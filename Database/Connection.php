@@ -5,7 +5,7 @@ namespace Database;
 class Connection
 {
     const HOST = 'localhost';
-    const DB_NAME = 'dynamic_web_builder';
+    const DB_NAME = 'vehicle_registration';
     const USERNAME = 'root';
     const PASSWORD = '';
 
@@ -19,5 +19,6 @@ class Connection
         return $this->connection;
     }
 }
+
 
 ?>

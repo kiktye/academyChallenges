@@ -2,48 +2,67 @@
 ## Request
 
 Challenge - PHP PDO
-The goal of this challenge is to create a dynamic website builder. Every visitor
-that comes to the web application should be able to fill a couple of
-predefined fields after which his company’s web site will be generated. All
-generated websites will have the same structure, only the basic styling and
-content that the visitor chooses by himself are dynamic.
-The challenge should have 3 pages and should use a mysql database as data
-storage (do not use files). You can reference the design from the design
-folder, feel free to use images of your own choice.
-When a user clicks on the “Start” button on the home page (see page1.png),
-he is taken to the second page (see page2.png) where he needs to fill out the
-following fields:
-● Url link for the cover image
-● A title for the page
-● A subtitle for the page
-● A short description of the company
-● Telephone number
-● Location
-● Choose from a dropdown between services and products
-● Three urls with three descriptions for the three products/services
-● Description which will be displayed next to the contact form
-● Links for linkedin, facebook, twitter and instagram social profiles
-Everything entered into this form has to be stored in a database. For the
-structure of the database, feel free to design it yourself, just try not to have
-columns which will be nullable. Also try to combine OOP with PDO when
-connecting to the database.
-After submitting the form and storing the data, the user is redirected to the
-third page (see page3.png), where all the information that has been stored in
-the database, is retrieved and rendered as illustrated on the design for page 3.
-You pass the information for which record to show via a GET attribute
-(example: company.php?id=1, company.php?id=2, company.php?id=3 and so
-on).
+An application for managing registered vehicles.
+For this challenge we need to create an application for managing vehicle
+licensing. It has 2 parts, one for all visitors and one for authenticated users
+(admins).
+Part 1.
+The home page, looks like on the screenshot below.
+There is an input for entering a license plate number of a vehicle.
+If the user enters a valid license plate number (one added by the admin in
+part 2), all information about that car should be displayed in a table.
+If the license plate does not exist, a message that there is no such record
+should be printed out on screen.
+Add a navbar with a Login button in the right corner. There is no need to write
+logic for registering users as the admins will be hardcoded into the database
+and no new users will be allowed to register (this is a closed system).
 Full Stack Academy - Challenge 16 - PHP - PDO
-Notes:
-● Depending on whether the user selects services or products, that
-property should be printed in the navbar, the section title, and the title
-of the card. See page3.png
-● Make the navbar items highlighted on hover.
-● When the user clicks a particular item in the navbar, the page should
-scroll to the appropriate section.
-● The contact form does not have to work (it doesn’t need to actually
-send emails), just make the design.
-
+Part 2.
+Implement the login functionality using session. The users are stored in a
+database table and the passwords are hashed.
+After login, the admin should be presented with the following view:
+This page consists of 2 parts:
+1. A Vehicle Registration Form
+The form should have the following inputs:
+➢ vehicle model (dropdown, options fetched from database),
+➢ vehicle type (dropdown, options fetched from database),
+➢ vehicle chassis number (text),
+➢ vehicle production year (date),
+➢ registration number (text),
+➢ fuel type (dropdown, options fetched from database),
+➢ registration to (date)
+Vehicle model, vehicle type and fuel type should all be resources
+coming from database tables. You can name these tables as the inputs
+themselves, only in plural, for example “vehicle_models”. For
+vehicle_type the options can be hardcoded into a database, there is no
+need to create dynamic CRUD for that. The available options are: sedan,
+coupe, hatchback, suv, minivan. Same applies for the fuel_type table,
+where available options are: gasoline, diesel and electric.
+Full Stack Academy - Challenge 16 - PHP - PDO
+For the vehicle_models table, a CRUD needs to be created and the
+admin should be able to insert a new vehicle model if it doesn’t exist,
+before licensing it.
+All the information from the vehicle registration form is stored in one
+table called registrations. Make a validation that prevents the admin
+from adding two records in the database with the same chassis
+number.
+2. A table with all the licensed vehicles
+The table should display all the information entered from the form.
+Make a logic to check the registration_to date and color the row
+according to its value. Display that table row in yellow color if the
+registration is one month before expiration. If the registration has
+expired, display that row in red.
+In the action column besides the “delete” and “edit” buttons, add an
+“extend” button for editing only the “registration_to” date for those
+records that are expired or about to expire (yellow or red).
+Add an input in the right corner of the table with a “search” button.
+When you click on the search button, only the vehicles matching the
+search criteria should be shown. The text from the input text field is
+used to search the vehicles by model, license plate number or chassis
+number. Here you should use the LIKE and OR operators.
+Don’t leave room for SQL Injection attacks.
+It would be great if you can create all of these operations using the OOP
+programming model.
 
 ## Comment from a mentor
-The solution is fine
+Nice that you documented the solution - I especially liked that. The rest is also okay.
