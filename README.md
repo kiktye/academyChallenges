@@ -1,35 +1,37 @@
 # academyChallenges
 ## Request
 
-Challenge 11 - PHP
-For this challenge:
-1. Create a variable $name and set its value to be a person's name. Next, check
-if the variable value is equal to ‘Kathrin’, if it is, your script should print “Hello
-Kathrin”. If not, the script should print “Nice name”. Next, create a new
-variable $rating with an integer value of your choice. If the value of $rating is
-between 1 and 10, the script should print “Thank you for rating”, if not, the
-script should print: 'Invalid rating, only numbers between 1 and 10.'
-2. Extend the previous code with a few new things. Use the native php
-function date() (https://www.php.net/manual/en/function.date.php) to get the
-current hour. If the time value is before 12pm print: “Good morning Kathrin”. If
-the value is after 12pm but before 7pm print: “Good afternoon Kathrin”. If the
-value is after 7pm print: “Good evening Kathrin”.
-Add another variable $rated with values true or false. You will need to extend
-the $rating condition check. Now if the $rating variable has value from 1 to 10,
-the script will need to do another check for the $rated variable. So, if the
-$rated variable is true, the script should print: “You already voted”. If $rated is
-false, the script will need to print “Thanks for voting”.
-Also, for the $rating variable you will need to check if the value is integer or
-some other sign or character.
-3. Create an associative array. Add key/value pairs where key should be a
-name of a voter. For value you should combine two parameters: The first
-value should be boolean if voter has already voted (true/false) and the second
-one should be rating value (integer). Concat these two values with “,”.
-Full Stack Academy - Challenge 11 - PHP
-Add 10 elements to the array. For each voter from the array you should print:
-“Good morning/afternoon/evening voterName”
-“You already voted with a $rating. / Thanks for voting with a $rating. / Invalid
-rating, only numbers between 1 and 10.”
+Challenge 12 - PHP
+Part 1
+Write two PHP functions.
+Function 1: Converts decimal number to a binary number.
+Function 2: Converts decimal number to Roman number. Maximum number
+that can be converted is 3999. If the number is greater than 3999, the function
+should print an error message.
+Part 2
+Write two more PHP functions.
+Function 3: Converts a binary number to a decimal number.
+Function 4: Converts a roman number to a decimal number.
+Part 3
+Create a function that will check if a given number is roman, decimal or
+binary.
+● All decimal numbers should have a plus or a minus sign (‘+’ or ‘-’),
+indicating if they are positive or negative (eg. -10, +20, +4, -8). Binary
+numbers should be without a sign (eg. 01, 100, 001, 10). If the number
+doesn’t have a sign and does not consist of only zeroes and ones, it
+should still be considered a decimal number (ex. 545, 3135 etc.)
+● If a decade number starts with zero and has a sign in front of it, print an
+error (eg. +0123).
+Full Stack Academy - Challenge 12 - PHP
+● Call the previous functions to convert the number into the other two
+types of numbers. For example, if the given number is decimal, call the
+function to convert it to roman and binary.
+● Increase the limit for the roman numbers converter to 3999999. If a
+number is greater than 3999999, print an error message
+● Create an array with 10 numbers of all types (decade, binary, roman).
+Iterate through the array and print each number in all three numbering
+systems.
+Bonus: Try to make one of the functions for converting numbers recursive
 
 ## Comment from a mentor
-Super done. The check in the second request should be if ($rating &gt;= 1 &amp;&amp; $rating &lt;= 10) {because the request is &quot; If the value of $rating is between 1 and 10...&quot;. } In your case if I enter -10 it will go into the if, but it shouldn't. I have no other comments
+Super done. I have no remarks
