@@ -1,37 +1,54 @@
 # academyChallenges
 ## Request
 
-Challenge 12 - PHP
-Part 1
-Write two PHP functions.
-Function 1: Converts decimal number to a binary number.
-Function 2: Converts decimal number to Roman number. Maximum number
-that can be converted is 3999. If the number is greater than 3999, the function
-should print an error message.
-Part 2
-Write two more PHP functions.
-Function 3: Converts a binary number to a decimal number.
-Function 4: Converts a roman number to a decimal number.
-Part 3
-Create a function that will check if a given number is roman, decimal or
-binary.
-● All decimal numbers should have a plus or a minus sign (‘+’ or ‘-’),
-indicating if they are positive or negative (eg. -10, +20, +4, -8). Binary
-numbers should be without a sign (eg. 01, 100, 001, 10). If the number
-doesn’t have a sign and does not consist of only zeroes and ones, it
-should still be considered a decimal number (ex. 545, 3135 etc.)
-● If a decade number starts with zero and has a sign in front of it, print an
-error (eg. +0123).
-Full Stack Academy - Challenge 12 - PHP
-● Call the previous functions to convert the number into the other two
-types of numbers. For example, if the given number is decimal, call the
-function to convert it to roman and binary.
-● Increase the limit for the roman numbers converter to 3999999. If a
-number is greater than 3999999, print an error message
-● Create an array with 10 numbers of all types (decade, binary, roman).
-Iterate through the array and print each number in all three numbering
-systems.
-Bonus: Try to make one of the functions for converting numbers recursive
+Challenge 13- PHP
+Part 1:
+You need to create 4 pages.
+The first page will be a sign up/login page. It should have a background
+image and two buttons. (sign up and login). The forms are not on this page,
+only 2 links (styled as buttons) that when clicked will take the user to a page
+dedicated for either login or register action.
+The sign up link/button should take the user to the second page where a
+form with two inputs for username and password is shown. At the top of this
+page the text ‘Sign up form’ is printed.
+When the user submits the form, the data should be written into a users.txt
+file (format: username=password). The password should be hashed, either
+using md5 or password_hash (preferred option).
+Every new user should be inserted in a new row in the users.txt file.
+After form submission, the user should be redirected to a new page (third
+page) where the message ‘Welcome $username’ will be shown.
+The login link/button should take the user to a new page (fourth page) where
+a form with 2 inputs for username and password is also shown.At the top of
+this page the text ‘Login form’ is printed.
+When a user submits the form – a check should be done if the data the user
+entered matches some of the users in the users.txt file. Remember, the
+passwords need to be hashed.
+If the user is not found in users.txt file – show the message ‘Wrong
+username/password combination ‘.
+Full Stack Academy - Challenge 13 - PHP
+If everything is ok – Redirect the user to the third page where the same
+message ‘Welcome $username’ is shown.
+Part 2:
+Add another input to the sign up page: email.
+Create a new file where instead of storing only the username=password, you
+will save the email too, in the following format: ‘email, username=password’.
+When registering, add logic to check if the username already exists in the
+users.txt file. If it does, print a message ‘Username taken’.
+Also, check if the email already exists in the users.txt file. That means that
+when submitting the form, the user has to provide a unique email. If the
+email already exists in the users.txt file, print the following message: ‘A user
+with this email already exists’. Use yellow font color for this message.
+Part 3:
+Add input validation. Every validation needs to be a separate function. The
+validations to be implemented are:
+● All inputs are required (no empty fields are allowed);
+● Username cannot contain empty spaces or special signs;
+● Email must have at least 5 characters before @;
+● Password must have at least one number, one special sign and one
+uppercase letter;
+Then, adapt the code to print proper validation messages (in red color) for
+each failed validation.
+
 
 ## Comment from a mentor
 Super done. I have no remarks
