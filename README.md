@@ -1,24 +1,25 @@
 # academyChallenges
 ## Request
 
-Challenge 17 - JavaScript
-For this challenge, you will solve tasks that are used for developing logic.
-Solve them in order as the weight of each subsequent task increases.
-Tasks can be in one document or 3 different ones.
-1. Use conditions to check if a given number is even. If so , print with
-console.log “ The Number (TheNumberYouWrote) is even ". If the
-number is not even, print " The Number (TheNumberYouWrote) is not
-even".
-2. Check which numbers from 10 to 100 are even and divisible by 3. Print
-with console.log all those that meet these conditions.
-3. From the given 3 numbers , find the smallest and largest, and check
-are they prime.
-Example:
-Number = 13;
-Number2 = 15;
-Number3 = 20;
-Smallest - 13 , Largest-20
-The smallest number 13 is prime , The largest number 20 is not prime.
+Challenge 18 - JavaScript
+- Create an array of objects, where each object describes a book and has
+properties for the title (a string), author (a string), maxPages(int) and
+onPage(int) . maxPages is the number of pages the book has. onPage is a
+number that represents the page that we are on.
+- Iterate through the array of books. For each book, make a list with the book
+title and book author like so: "The Hobbit by J.R.R. Tolkien".
+- Now use an if/else statement to change the output depending on whether
+you read it yet or not (check if maxPages is equal to onPage). If you read it, list
+it in format 'You already read "The Hobbit" by J.R.R. Tolkien in green text', and
+if not, 'You still need to read "The Lord of the Rings" by J.R.R. Tolkien. in red
+text.'
+- Make a table and populate it with info about the books. Next to every book
+there should be a progress bar. Calculate the percentage of how far away you
+are in the book and show it through the progress bar.
+- Under the table, make a form to add a new object (or add the values to the
+object through multiple prompts). After clicking submit, the object should be
+automatically added to the table together with the progress bar.
+
 
 ## Comment from a mentor
-You have written correct and excellent solutions in the three tasks, your code is nicely structured and organized. Note: In the second problem it is specified exactly which numbers should be taken as input in the first problem and in the third problem only examples are given to clarify the requirement. It is understood that in the first and third task the numbers should be entered through the prompt. You do not check in the first and third tasks whether the entry will be valid. And not all tasks should be in one js file.
+Your code is structured and well organized. You have done a great job creating a list of objects and displaying them. Your table with progress bar is coded correctly. Your code for adding a book is correct. Notes: You don't have validators on the inputs, I can put an empty row and you don't do any checks. You have no checks even if I enter a page larger than the number of pages in the book.
