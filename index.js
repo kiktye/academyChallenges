@@ -1,106 +1,136 @@
-let books = [
-  {
-    title: "The Hobbit",
-    author: "J.R.R Tolkien",
-    maxPages: 200,
-    onPage: 60,
-  },
-  {
-    title: "Harry Potter",
-    author: "J.K Rowling",
-    maxPages: 250,
-    onPage: 150,
-  },
-  {
-    title: "50 Shades of Grey",
-    author: "E. L. James",
-    maxPages: 150,
-    onPage: 75,
-  },
-  {
-    title: "Atomic Habits",
-    author: "James Clear",
-    maxPages: 290,
-    onPage: 290,
-  },
-  {
-    title: "Rich Dad Poor Dad",
-    author: "Robert Kiyosaki",
-    maxPages: 390,
-    onPage: 390,
-  },
-];
-
-function renderBookList() {
-  const bookList = document.getElementById("bookList");
-  bookList.innerHTML = "";
-  books.forEach((book) => {
-    const listItem = document.createElement("p");
-    listItem.textContent = ` • ${book.title} by ${book.author}`;
-    bookList.appendChild(listItem);
+window.addEventListener("load", function () {
+    location.hash = "";
   });
-  const lineBreak = document.createElement("br");
-  bookList.appendChild(lineBreak);
-
-  const status = document.createElement("h2");
-  status.textContent = `Book Status`;
-  bookList.appendChild(status);
-}
-
-renderBookList();
-
-function renderBookTable() {
-  const tableBody = document.getElementById("bookTable");
-  tableBody.innerHTML = "";
-  books.forEach((book) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-    <td>${book.title}</td>
-    <td>${book.author}</td>
-    <td>${book.onPage}</td>
-    <td>${book.maxPages}</td>
-    <td>
-    <div class="progress-bar">
-        <div class="progress" style="width: ${
-          (book.onPage / book.maxPages) * 100
-        }%"></div>
-        </div>
-    </td>`;
-    tableBody.appendChild(row);
+  localStorage.clear();
+  
+  let loadingContainer = document.getElementById("loading");
+  let goodLuckQuote = document.getElementById("goodLuckQuote");
+  let startQuizBtn = document.getElementById("startQuiz");
+  let questionContainer = document.getElementById("questionContainer");
+  let completedQuestions = document.getElementById("completedQuestions");
+  let goodLuckSection = document.getElementById("goodLuckSection");
+  let resultSection = document.getElementById("resultSection");
+  let tryAgain = document.getElementById("tryAgain");
+  let counter = 0;
+  let counterCorrect = document.getElementById("counterCorrect");
+  let totalCorrectAnswers = document.getElementById("totalCorrectAnswers");
+  
+  loadingContainer.innerHTML = `
+  <div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+  </div> <h1>Loading Quiz... </h1>`;
+  let welcomeQuote = document.getElementById("welcomeQuote");
+  
+  function hideLoading() {
+    loadingContainer.style.display = "none";
+    welcomeQuote.style.display = "flex";
+  }
+  
+  startQuizBtn.addEventListener("click", function (e) {
+    welcomeQuote.classList.remove("d-flex");
+    welcomeQuote.classList.add("d-none");
+    goodLuckSection.classList.remove("d-none");
+    goodLuckSection.classList.add("d-flex");
+  
+    completedQuestions.innerHTML = "<h3>Completed:" + counter + "/20 </h3>  ";
+  
+    location.hash = "#question-" + counter;
   });
-}
-
-renderBookTable();
-
-function addBook(event) {
-  event.preventDefault();
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const onPage = parseInt(document.getElementById("onPage").value);
-  const maxPages = parseInt(document.getElementById("maxPages").value);
-  books.push({ title, author, onPage, maxPages });
-  renderBookList();
-  renderBookTable();
-  readStatus();
-  document.getElementById("addBookForm").reset();
-}
-
-document.getElementById("addBookForm").addEventListener("submit", addBook);
-
-function readStatus() {
-  books.forEach((book) => {
-    const statusElement = document.createElement("P");
-    const bookList = document.getElementById("bookList");
-
-    if (book.maxPages === book.onPage) {
-      statusElement.textContent = `• You already have read ${book.title} by ${book.author}`;
-      statusElement.classList.add("green");
-    } else {
-      statusElement.textContent = `• You still need to read ${book.title} by ${book.author}`;
-      statusElement.classList.add("red");
+  
+  let startOverBtn = document.getElementById("startOver");
+  startOverBtn.addEventListener("click", function () {
+    location.replace("index.html");
+    localStorage.clear();
+  });
+  
+  function test() {
+    async function getQuestions() {
+      let response = await fetch("https://opentdb.com/api.php?amount=20");
+      let data = response;
+      return data;
     }
-    bookList.appendChild(statusElement);
-  });
-}
-
-readStatus();
+    getQuestions()
+      .then((response) => response.json())
+      .then((data) => {
+        let quiz = data.results;
+  
+        let questionContainer = document.getElementById("questionContainer");
+  
+        console.log(data);
+  
+        for (let i = 0; i < quiz.length; i++) {
+          function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+          }
+  
+          function answers() {
+            let answers = [];
+            quiz[i].incorrect_answers.forEach(function (incorrect_answer) {
+              answers.push(
+                `<button type="button" onclick='loadQuestion()' class="btn btn-outline-dark" >${incorrect_answer}</button>`
+              );
+            });
+            answers.push(
+              `<button type="button" onclick='loadQuestion()' class="btn btn-outline-dark" id="correctanswer">${quiz[i].correct_answer}</button>`
+            );
+  
+            return answers;
+          }
+  
+          let answerShuffle = shuffle(answers());
+          let random = answerShuffle.join(" ");
+  
+          let html = `
+                <div class="card">
+                <div class="card-header h3 p-3">${quiz[i].question}</div>
+                <div class="card-body d-flex justify-content-evenly" id="answers">
+                ${random}
+                </div>
+                <div class="card-footer text-muted p-3">${quiz[i].category}</div>
+                </div>
+                `;
+          questionContainer.innerHTML = html;
+          let correctAnswer = document.getElementById("correctanswer");
+          let correctOption = localStorage.getItem("correct");
+          correctAnswer.addEventListener("click", function () {
+            correctOption++;
+            localStorage.setItem("correct", correctOption);
+          });
+          if (counter == 20) {
+            goodLuckSection.classList.remove("d-flex");
+            goodLuckSection.classList.add("d-none");
+            resultSection.classList.remove("d-none");
+            resultSection.classList.add("d-flex");
+            totalCorrectAnswers.innerHTML =
+              "<br><h3>Total Correct Answers:" +
+              localStorage.getItem("correct") +
+              "/20 </h3>  ";
+          }
+          tryAgain.addEventListener("click", function () {
+            location.replace("index.html");
+            localStorage.clear();
+          });
+        }
+  
+        return data;
+      })
+      .then(() => {
+        hideLoading();
+      });
+  }
+  
+  test();
+  
+  function loadQuestion() {
+    welcomeQuote.style.display = "none";
+    test();
+    counter++;
+    completedQuestions.innerHTML = "<h3>Completed:" + counter + "/20 </h3>  ";
+  
+    location.hash = "#question-" + counter;
+  }
+  

@@ -1,25 +1,50 @@
 # academyChallenges
 ## Request
 
-Challenge 18 - JavaScript
-- Create an array of objects, where each object describes a book and has
-properties for the title (a string), author (a string), maxPages(int) and
-onPage(int) . maxPages is the number of pages the book has. onPage is a
-number that represents the page that we are on.
-- Iterate through the array of books. For each book, make a list with the book
-title and book author like so: "The Hobbit by J.R.R. Tolkien".
-- Now use an if/else statement to change the output depending on whether
-you read it yet or not (check if maxPages is equal to onPage). If you read it, list
-it in format 'You already read "The Hobbit" by J.R.R. Tolkien in green text', and
-if not, 'You still need to read "The Lord of the Rings" by J.R.R. Tolkien. in red
-text.'
-- Make a table and populate it with info about the books. Next to every book
-there should be a progress bar. Calculate the percentage of how far away you
-are in the book and show it through the progress bar.
-- Under the table, make a form to add a new object (or add the values to the
-object through multiple prompts). After clicking submit, the object should be
-automatically added to the table together with the progress bar.
+Challenge 19 - JavaScript
+For this challenge, you are going to make a quiz.
+Along with this document, you should have a video of how the application
+should work from a user point of view, so before you proceed, please take a
+look at it.
+General guidelines:
+Make an index.html and a main.js file, and put all your logic in the main.js file.
+For styling, you are encouraged to use bootstrap. As you have probably seen
+in the video, there are some smooth effects for showing the content on the
+screen, so to achieve that effect you can use the following library:
+<link rel="stylesheet" type="text/css"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+More info about the library here.
+Or feel free to make you own custom effects with css.
+Another thing you will need is to fetch the questions for the quiz from the
+following api: https://opentdb.com/api.php?amount=20
+Note: This api will give you 20 questions, the quiz should end after the 20th question.
+More info about the api here.
+Full Stack Academy - Challenge 19 - JavaScript
+Challenge Objectives:
+1. Make the application’s skeleton with html and css/bootstrap. First show
+the loading screen and hide everything else
+2. Make an api call to the provided address to fetch the questions, once
+the api returns a response, hide the loading screen and show the start
+screen
+3. When the user clicks on the start button, append to the url a string with
+a hash “#”, for example: index.html#question-1
+4. Using the hashchange event, change the content of the screen once
+again and show the user the first question you received from the api,
+along with the progress bar below the question
+Full Stack Academy - Challenge 19 - JavaScript
+5. When the user clicks on any of the suggested answers for the question,
+change the string after the hash to correlate to the next question, for
+example #question-2, and thus display the second question, and so on…
+6. You also need to keep track of the number of correct answers the user
+has selected. For this purpose, you need to create some kind of a
+counter that you will increment every time the user answers a question
+correct and keep that information in local storage
+7. Once the user answers all questions, change the content of the screen
+and show them the amount of correct answers they got.
+8. If the user clicks on Start Over or Try Again, reload the page and clear
+the local storage
+
 
 
 ## Comment from a mentor
-Your code is structured and well organized. You have done a great job creating a list of objects and displaying them. Your table with progress bar is coded correctly. Your code for adding a book is correct. Notes: You don't have validators on the inputs, I can put an empty row and you don't do any checks. You have no checks even if I enter a page larger than the number of pages in the book.
+Successfully fetching the data via requestot. Successfully navigated to the next question and displayed the question with URL You successfully displayed a question with the number of answered questions. A successful display of results and the user can start over. The code is clean and I have no additional comments about the logic. Errors: You are missing the progress bar. You are not successful in keeping records of where the user reached when the page is reloaded. Your Loading screen is not coded correctly before the data is taken.

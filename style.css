@@ -1,33 +1,45 @@
-  .progress-bar {
-    width: 100%;
-    background-color: #f2f2f2;
-    overflow: hidden;
+* {
+    font-family: "Montserrat", sans-serif;
   }
-
-  .progress {
-    width: 0%;
-    height: 20px;
-    background-color: #4caf50;
-  }
-
-  .red {
-    color: red;
-  }
-  .green {
-    color: green;
-  }
-
-  form {
+  
+  .loading {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 960px;
   }
-  form div {
-    margin-right: 10px;
+  
+  .welcomeQuote {
+    height: 960px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
-
-  p {
-    margin: 0;
-  }
-
-  h2 {
+  
+  .border {
+    border-bottom: 1px solid;
+    width: 100%;
     margin-bottom: 10px;
   }
+  
+  .completedQuestions {
+    height: 100px;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+  }
+  
+  .goodLuckSection {
+    height: 960px;
+  }
+  
+  .correctAnswer {
+    height: 960px;
+  }
+  
+  .btn-outline-dark {
+    padding: 1% !important;
+  }
+  
